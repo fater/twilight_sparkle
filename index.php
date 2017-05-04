@@ -9,6 +9,9 @@ class TW
     // Set minimum length of array
     protected $amountMin = 2;
 
+    // Set maximum length of array
+    protected $amountMax = 100000;
+
     // Result
     protected $result = -1;
 
@@ -21,9 +24,11 @@ class TW
      */
     public function __construct($length = 0)
     {
-        // Set to min length of raary
+        // Set to min length of array
         if ($length < $this->amountMin) {
             $length = $this->amountMin;
+        } elseif ($length > $this->amountMax) {
+            $length = $this->amountMax;
         }
 
         // Create array range
@@ -53,7 +58,7 @@ class TW
                 if ($this->data[$i] + 1 != $this->data[$i + 1]) {
                     return null;
                 }
-            } elseif ($i == 0 && $i == $minPos) {
+            } elseif (0 == $minPos) {
                 if ($this->data[$i] + 1 != $this->data[$i + 1]) {
                     return null;
                 }
